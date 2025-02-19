@@ -57,7 +57,7 @@ const ProductGrid = ({
     console.log(`Add to cart clicked for product ${productId}`),
 }: ProductGridProps) => {
   return (
-    <div className="w-full max-w-[1400px] min-h-[600px] mx-auto bg-gray-50 p-8">
+    <div className="w-full max-w-[1400px] min-h-[600px] mx-auto bg-gradient-to-b from-gray-50 to-white p-8 rounded-2xl">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
         {products.map((product) => (
           <ProductCard

@@ -40,7 +40,7 @@ const Footer = ({
   },
 }: FooterProps) => {
   return (
-    <footer className="bg-white text-gray-600 py-12 w-full">
+    <footer className="bg-gradient-to-b from-gray-50 to-gray-100 text-gray-600 py-12 w-full mt-12 border-t border-gray-200">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Support Links */}

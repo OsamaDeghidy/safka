@@ -1,6 +1,8 @@
 import { Suspense } from "react";
-import { useRoutes, Routes, Route } from "react-router-dom";
+import { useRoutes, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/home";
+import VendorDashboard from "./components/vendor/VendorDashboard";
+import { useAuth } from "./contexts/auth-context";
 import routes from "tempo-routes";
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
       <>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/vendor" element={<VendorDashboard />} />
         </Routes>
         {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       </>

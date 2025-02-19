@@ -24,7 +24,7 @@ const ProductCard = ({
   const discountedPrice = price - price * (discount / 100);
 
   return (
-    <Card className="w-[320px] h-[400px] bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <Card className="w-[320px] h-[400px] bg-white overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.02] rounded-xl border-2 border-gray-100">
       <CardHeader className="p-0">
         <div className="relative h-48 w-full">
           <img src={image} alt={title} className="w-full h-full object-cover" />
@@ -54,7 +54,7 @@ const ProductCard = ({
           onClick={onAddToCart}
           className="w-full bg-blue-600 hover:bg-blue-700"
         >
-          <ShoppingCart className="mr-2 h-4 w-4" />
+          <ShoppingCart className="ml-2 h-4 w-4" />
           Add to Cart
         </Button>
       </CardFooter>

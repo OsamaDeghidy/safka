@@ -51,7 +51,7 @@ const BannerSection = ({
   onBuyNow = (id: number) => console.log(`Buy now clicked for banner ${id}`),
 }: BannerSectionProps) => {
   return (
-    <div className="w-full h-[400px] bg-gray-100 relative">
+    <div className="w-full h-[400px] bg-gradient-to-r from-blue-50 to-indigo-50 relative overflow-hidden rounded-2xl mx-auto max-w-[1400px] my-6">
       <Carousel className="w-full h-full">
         <CarouselContent>
           {banners.map((banner) => (

@@ -9,7 +9,22 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
-import { ShoppingCart, Search, Menu, User, ChevronDown } from "lucide-react";
+import {
+  ShoppingCart,
+  Search,
+  Menu,
+  User,
+  ChevronDown,
+  LogOut,
+} from "lucide-react";
+import { useAuth } from "@/contexts/auth-context";
+import { LoginDialog } from "./auth/login-dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { Badge } from "./ui/badge";
 
 interface HeaderProps {
@@ -53,6 +68,7 @@ const Header = ({
     },
   ],
 }: HeaderProps) => {
+  const { user, logout } = useAuth();
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleSearch = (e: React.FormEvent) => {
@@ -61,11 +77,13 @@ const Header = ({
   };
 
   return (
-    <header className="w-full h-20 bg-white border-b border-gray-200 fixed top-0 left-0 z-50">
+    <header className="w-full h-20 bg-white border-b border-gray-200 fixed top-0 left-0 z-50 font-noto-sans-arabic">
       <div className="max-w-7xl mx-auto h-full px-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-blue-600">{logo}</h1>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            {logo}
+          </h1>
         </div>
 
         {/* Category Menu */}
@@ -117,9 +135,37 @@ const Header = ({
 
         {/* Right Section */}
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon">
-            <User className="h-5 w-5" />
-          </Button>
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="w-8 h-8 rounded-full"
+                  />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem className="font-semibold">
+                  {user.name}
+                </DropdownMenuItem>
+                {user.role === "vendor" && (
+                  <DropdownMenuItem
+                    onClick={() => (window.location.href = "/vendor")}
+                  >
+                    لوحة التحكم
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem onClick={logout}>
+                  <LogOut className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <LoginDialog />
+          )}
           <div className="relative">
             <Button variant="ghost" size="icon">
               <ShoppingCart className="h-5 w-5" />

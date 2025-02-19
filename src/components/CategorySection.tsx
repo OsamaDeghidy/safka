@@ -96,7 +96,7 @@ const CategorySection = ({
   ],
 }: CategorySectionProps) => {
   return (
-    <div className="w-full max-w-[1400px] mx-auto p-6 bg-gray-50">
+    <div className="w-full max-w-[1400px] mx-auto p-6 bg-gradient-to-b from-white to-gray-50 rounded-2xl shadow-sm">
       <h2 className="text-2xl font-bold mb-6 text-gray-900">
         Shop by Category
       </h2>
@@ -113,7 +113,7 @@ const CategorySection = ({
             <Card>
               <CardContent className="p-6">
                 <ScrollArea className="w-full">
-                  <div className="flex space-x-4 pb-4">
+                  <div className="flex space-x-4 rtl:space-x-reverse pb-4">
                     {category.products.map((product) => (
                       <ProductCard
                         key={product.id}
